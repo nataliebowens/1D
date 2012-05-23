@@ -17,17 +17,17 @@ def simple1d3(x=None, Fliq=None, Nice=None, Ntimes=None, diffperdt=None, rainper
     
     
     Fliqnext = numpy.zeros(numpy.size(x))
-    tDiff=0
-    tLookE=0
-    tFind=0
-    tVap=0
-    tLookN=0
-    tUpdate=0
+    tDiff=0.0
+    tLookE=0.0
+    tFind=0.0
+    tVap=0.0
+    tLookN=0.0
+    tUpdate=0.0
     
     for itime in range(1,Ntimes):
         
         # Diffusion of liquid to adjacent cells
-        tDiff= tDiff - time.time()
+        tDiff= tDiff - time.time()  
         end = Fliqnext.size-1
         Fliqnext[1:end] = Fliq[1:end] * (1 - diffperdt) + (Fliq[0:end-1] + Fliq[2:end+1]) * diffperdt / 2
         Fliqnext[0] = Fliq[0] * (1 - diffperdt / 2) + Fliq[1] * diffperdt / 2
