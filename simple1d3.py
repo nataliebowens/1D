@@ -70,7 +70,13 @@ def simple1d3(x=None, Fliq=None, Nice=None, Ntimes=None, diffperdt=None, rainper
         Fliq = Fliqnext
         tUpdate= tUpdate + time.time() 
 
-   
+           # Graphics
+        if numpy.mod(itime,100)==0:
+            matplotlib.pyplot.clf()
+            matplotlib.pyplot.plot(x, Nice, x, Fliq + Nice)
+            print itime
+            matplotlib.pyplot.pause(0.0001)
+
     end
     
     # This prints out the time that it takes each step to complete in the loop. 

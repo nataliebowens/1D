@@ -12,10 +12,10 @@ reload (simple1d3)
 Nx = 500 #Changed this to half
 xmax = 501
 Fliqstart = .1
-Ntimes = 30000
+Ntimes = 50000
 diffperdt = 0.05
 supersat = 0.04
-supersatpfactor = .9
+supersatpfactor = .8
 alpha_terr = .2
 alpha_edge = 1.0
 Fliqmax = 2
