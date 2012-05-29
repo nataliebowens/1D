@@ -7,10 +7,11 @@ import pdb
 import time
 import pickle
 import simple1d3
+reload (simple1d3)
 
-Nx = 1000
+Nx = 1000/2 #Changed this to half
 Fliqstart = .1
-Ntimes = 30000
+Ntimes = 3000
 diffperdt = 0.05
 supersat = 0.04
 supersatpfactor = .9
@@ -23,7 +24,8 @@ x = linspace(0, 999, Nx)
 Fliq0 = ones(size(x)) * Fliqstart
 Nice0 = zeros(size(x))
 supersatp = supersat * supersatpfactor
-xmid = max(x) / 2
+#I cut this in half by 0
+xmid = 0*(max(x) / 2)
 c = (supersat - supersatp) / xmid ** 2
 rainperdt = (x - xmid)**2 * c + supersatp
 rainperdt_terr = rainperdt * alpha_terr
