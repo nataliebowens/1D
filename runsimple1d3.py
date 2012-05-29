@@ -9,9 +9,10 @@ import pickle
 import simple1d3
 reload (simple1d3)
 
-Nx = 1000/2 #Changed this to half
+Nx = 500 #Changed this to half
+xmax = 501
 Fliqstart = .1
-Ntimes = 3000
+Ntimes = 30000
 diffperdt = 0.05
 supersat = 0.04
 supersatpfactor = .9
@@ -20,14 +21,12 @@ alpha_edge = 1.0
 Fliqmax = 2
 
 # Dependent parameters needed for simple1d3
-x = linspace(0, 999, Nx)
+x = linspace(0, xmax, Nx)
 Fliq0 = ones(size(x)) * Fliqstart
 Nice0 = zeros(size(x))
 supersatp = supersat * supersatpfactor
-#I cut this in half by 0
-xmid = 0*(max(x) / 2)
-c = (supersat - supersatp) / xmid ** 2
-rainperdt = (x - xmid)**2 * c + supersatp
+c = (supersat - supersatp) / xmax ** 2
+rainperdt = x**2 * c + supersatp
 rainperdt_terr = rainperdt * alpha_terr
 rainperdt_edge = rainperdt * alpha_edge
 
