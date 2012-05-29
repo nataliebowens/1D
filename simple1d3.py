@@ -74,8 +74,7 @@ def simple1d3(x=None, Fliq=None, Nice=None, Ntimes=None, diffperdt=None, rainper
     end
     
     # This prints out the time that it takes each step to complete in the loop. 
-    #NOT WORKIN
-    print tDiff, tLookE, tLookN, tFind, tVap, tUpdate
+    print "time for tDiff "+ str(tDiff), "\ntime for tLookE "+ str(tLookE), "\ntime for tLookN "+ str(tLookN), "\ntime for tFind ", tFind, "\ntime for tVap ", tVap, "\ntime for Update", tUpdate
     
     
     # Record stuff and get out
