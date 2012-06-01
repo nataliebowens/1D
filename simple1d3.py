@@ -13,7 +13,7 @@ def simple1d3(x=None, Fliq=None, Nice=None, Ntimes=None, diffperdt=None, rainper
     
     
     # Other initializing
-    #pdb.set_trace()
+    #pdb.set_trace()http://piercetransit.org/http://piercetransit.org/
     
     
     Fliqnext = numpy.zeros(numpy.size(x))
@@ -23,7 +23,21 @@ def simple1d3(x=None, Fliq=None, Nice=None, Ntimes=None, diffperdt=None, rainper
     tVap=0.0
     tLookN=0.0
     tUpdate=0.0
-    
+ 
+
+        #This will ask the user if you want to have the program
+        #plot the variables as it is calculating and how often 
+        ans = raw_input("Real time plotting? \n (y or n)\n")
+        ans = "'" + ans + "'"
+
+        if ans == 'y':
+            timesteps= raw_input("How many time steps? \n integer :")
+            ts= int(ts) # this is used in the ploting function
+            
+        else:
+            pass #Should just pass to the next code
+
+   
     for itime in range(1,Ntimes):
         
         # Diffusion of liquid to adjacent cells
@@ -69,13 +83,19 @@ def simple1d3(x=None, Fliq=None, Nice=None, Ntimes=None, diffperdt=None, rainper
         tUpdate= tUpdate - time.time() 
         Fliq = Fliqnext
         tUpdate= tUpdate + time.time() 
-
-           # Graphics
-        if numpy.mod(itime,100)==0:
-            matplotlib.pyplot.clf()
-            matplotlib.pyplot.plot(x, Nice, x, Fliq + Nice)
-            print itime
-            matplotlib.pyplot.pause(0.0001)
+        
+        if ans == 'y':
+            
+            # Graphics
+            if numpy.mod(itime,ts)==0:
+                matplotlib.pyplot.clf() \
+                matplotlib.pyplot.plot(x, Nice, x, Fliq + Nice)  \                
+                print itime \
+                matplotlib.pyplot.pause(0.0001)##>> 100 below equals answer
+            
+        else:
+            pass #Should just pass to the next code
+       
 
     end
     
