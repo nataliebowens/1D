@@ -32,7 +32,6 @@ def simple1d3(x=None, Fliq=None, Nice=None, Ntimes=None, diffperdt=None, rainper
 
     if ans == 'y':
         timesteps= raw_input("How many time steps? \n integer :") 
-        break
         ts= int(timesteps) # this is used in the ploting function
             
     else:
