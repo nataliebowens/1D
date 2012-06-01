@@ -13,7 +13,7 @@ def simple1d3(x=None, Fliq=None, Nice=None, Ntimes=None, diffperdt=None, rainper
     
     
     # Other initializing
-    #pdb.set_trace()http://piercetransit.org/http://piercetransit.org/
+    #pdb.set_trace()
     
     
     Fliqnext = numpy.zeros(numpy.size(x))
