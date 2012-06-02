@@ -10,11 +10,8 @@ def simple1d3(x=None, Fliq=None, Nice=None, Ntimes=None, diffperdt=None, rainper
     import matplotlib.pyplot
     import pdb
     
-    
-    
     # Other initializing
     #pdb.set_trace()http://piercetransit.org/http://piercetransit.org/
-    
     
     Fliqnext = numpy.zeros(numpy.size(x))
     tDiff=0.0
@@ -95,7 +92,6 @@ def simple1d3(x=None, Fliq=None, Nice=None, Ntimes=None, diffperdt=None, rainper
         else:
             pass #Should just pass to the next code
        
-
     end
     
     # This prints out the time that it takes each step to complete in the loop. 
