@@ -27,11 +27,10 @@ def simple1d3(x=None, Fliq=None, Nice=None, Ntimes=None, diffperdt=None, rainper
 
         #This will ask the user if you want to have the program
         #plot the variables as it is calculating and how often....
-    ans = raw_input("Real time plotting? \n (y or n) \n")
-    print " : confirmed"
+    ans = raw_input("Real-time plotting? \n (y or n) :")
 
     if ans == 'y':
-        timesteps= raw_input("How many time steps? \n integer :") 
+        timesteps= raw_input("How many time steps? \n (integer) :") 
         ts= int(timesteps) # this is used in the ploting function
             
     else:
@@ -100,7 +99,7 @@ def simple1d3(x=None, Fliq=None, Nice=None, Ntimes=None, diffperdt=None, rainper
     end
     
     # This prints out the time that it takes each step to complete in the loop. 
-    print "time for tDiff "+ str(tDiff), "\ntime for tLookE "+ str(tLookE), "\ntime for tLookN "+ str(tLookN), "\ntime for tFind ", tFind, "\ntime for tVap ", tVap, "\ntime for Update", tUpdate
+    print "time for... \n\btDiff=", round(tDiff, 3), "\btLookE=", round(tLookE, 3), "\btLookN=", round(tLookN, 3), "\btFind=", round(tFind,3), "\btVap=", round(tVap,3), "\bUpdate=", round(tUpdate,3)
     
     
     # Record stuff and get out
