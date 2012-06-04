@@ -11,7 +11,7 @@ p3
 tp4
 Rp5
 (I1
-(I500
+(L500L
 tp6
 cnumpy
 dtype
@@ -46,7 +46,7 @@ p3
 tp4
 Rp5
 (I1
-(I500
+(L500L
 tp6
 cnumpy
 dtype
@@ -81,7 +81,7 @@ p3
 tp4
 Rp5
 (I1
-(I500
+(L500L
 tp6
 cnumpy
 dtype
@@ -117,7 +117,7 @@ p3
 tp4
 Rp5
 (I1
-(I500
+(L500L
 tp6
 cnumpy
 dtype
@@ -152,7 +152,7 @@ p3
 tp4
 Rp5
 (I1
-(I500
+(L500L
 tp6
 cnumpy
 dtype
