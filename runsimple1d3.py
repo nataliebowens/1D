@@ -7,7 +7,7 @@ import pdb
 import time
 import pickle
 import simple1d3
-reload (simple1d3)
+reload(simple1d3)
 
 
 Nx = 500 #Changed this to half
