@@ -22,7 +22,8 @@ if ans == 'y':
     rainperdt_edge = pickle.load(f)
     Fliqmax = pickle.load (f)
     f.close()
-    Ntimes = 200
+    Ntimes =100
+    #Fliq0 = Fliq0 + 3*exp(-(x-250)**2/(2*100^2))
         
 else:
 
@@ -105,7 +106,7 @@ else:
 [Fliq, Nice] = simple1d3.simple1d3(x, Fliq0, Nice0, Ntimes, diffperdt, rainperdt_terr, rainperdt_edge, Fliqmax)
 
 # Save it
-f = open('simple1d4.dat', 'w')
+f = open('simple1d3_normal.dat', 'w')
 pickle.dump(Fliq, f)
 pickle.dump(Nice, f)
 pickle.dump(x, f)
