@@ -11,7 +11,6 @@ def simple1d3(x=None, Fliq=None, Nice=None, Ntimes=None, diffperdt=None, rainper
     import pdb
     
     # Other initializing
-    #pdb.set_trace()http://piercetransit.org/http://piercetransit.org/
     
     Fliqnext = numpy.zeros(numpy.size(x))
     tDiff=0.0
@@ -87,7 +86,7 @@ def simple1d3(x=None, Fliq=None, Nice=None, Ntimes=None, diffperdt=None, rainper
                 matplotlib.pyplot.clf() 
                 matplotlib.pyplot.plot(x, Nice, x, Fliq + Nice)                  
                 print itime 
-                matplotlib.pyplot.pause(0.001)##>> 100 below equals answer
+                matplotlib.pyplot.pause(0.001) #What is this for?
             
         else:
             pass #Should just pass to the next code

@@ -45,7 +45,6 @@ else:
     rainperdt_terr = rainperdt * alpha_terr
     rainperdt_edge = rainperdt * alpha_edge
 
-=======
 Nx = 500 #Changed this to half
 xmax = 501
 Fliqstart = .1
@@ -120,7 +119,6 @@ c = (supersat - supersatp) / xmax ** 2
 rainperdt = x**2 * c + supersatp
 rainperdt_terr = rainperdt * alpha_terr
 rainperdt_edge = rainperdt * alpha_edge
->>>>>>> 9270c2e6311242fcae2291cbe9514722dbd8b185
 
 # Call to simple1d3
 [Fliq, Nice] = simple1d3.simple1d3(x, Fliq0, Nice0, Ntimes, diffperdt, rainperdt_terr, rainperdt_edge, Fliqmax)
