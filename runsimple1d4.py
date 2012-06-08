@@ -159,8 +159,8 @@ rainperdt_edge = rainperdt * alpha_edge
 # Save it
 # This asks user what he/she would like to save the file as 
        #>> savedFN = raw_input("\n\n\nWhat was changed? \n (example: ssp or diff)\n")
-
-savedFileName ='d3' + str(Ntimes) + '_' + str(savedFN) + str(var) + '.dat'
+numb= 30000 + Ntimes
+savedFileName ='d' + str(numb) + '_' + str(savedFN) + str(var) + '.dat'
 print savedFileName
 f = open(savedFileName, 'w')
 pickle.dump(Fliq, f)
