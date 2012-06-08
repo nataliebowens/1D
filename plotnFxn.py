@@ -1,6 +1,6 @@
 
 
-# Independent parameters controlling simple1d4 data files
+# Independent parameters using simple1d4's data files to graph the perturbations
 
 
 from pylab import *
