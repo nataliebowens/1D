@@ -161,7 +161,7 @@ rainperdt_edge = rainperdt * alpha_edge
        #>> savedFN = raw_input("\n\n\nWhat was changed? \n (example: ssp or diff)\n")
 numb= 30000 + Ntimes
 savedFileName ='d' + str(numb) + '_' + str(savedFN) + str(var) + '.dat'
-print savedFileName
+print "*****************\n" + savedFileName + "\n*****************"
 f = open(savedFileName, 'w')
 pickle.dump(Fliq, f)
 pickle.dump(Nice, f)
