@@ -24,9 +24,13 @@ rainperdt_terr = pickle.load(f)
 rainperdt_edge = pickle.load(f)
 Fliqmax = pickle.load (f)
 f.close()
-
+Ntimes = 1000
 ntimes= raw_input("How many extra steps:")
-Ntimes = int(ntimes)
+if ntimes=='':
+    print Ntimes
+else:
+    Ntimes = int(ntimes)
+    print Ntimes
 #Fliq0 = Fliq0 + 3*exp(-(x-250)**2/(2*100^2))
 
 supersat = 0.04                
@@ -35,24 +39,35 @@ alpha_terr = 0.2
 alpha_edge = 1.0
 diffperdt=0.05
 an= raw_input("1.supersat \n2.supersatpfactor \n3.alpha_terr \n4.alpha_edge \n5.diffperdt \n# of variable you would like to change:")
-ans= int(an)
-if ans== 1:
-    var= raw_input("Change from "+ supersat +"to:")
-    supersat= float(var)
-elif ans ==2:
-    var= raw_input("Change from "+ supersatpfactor +"to:")
-    supersatpfactor= float(var)
-elif ans ==3:
-    var= raw_input("Change from "+ alpha_terr +"to:")
-    alpha_terr= float(var)
-elif ans ==4:
-    var= raw_input("Change from "+ alpha_edge +"to:")
-    alpha_edge= float(var)
-elif ans ==5:
-    var= raw_input("Change from "+ diffperdt +"to:")
-    diffperdt= float(var)
-else :
+if an.isdigit():
+    if int(an)== 1:
+        var= raw_input("Change from "+ str(supersat) +" to:")
+        supersat= float(var)
+        savedFN = "ss"
+    elif int(an) ==2:
+        var= raw_input("Change from "+ str(supersatpfactor) +" to:")
+        supersatpfactor= float(var)
+        savedFN = "ssp"
+    elif int(an) ==3:
+        var= raw_input("Change from "+ str(alpha_terr) +" to:")
+        alpha_terr= float(var)
+        savedFN = "aTerr"
+    elif int(an) ==4:
+        var= raw_input("Change from "+ str(alpha_edge) +" to:")
+        alpha_edge= float(var)
+        savedFN = "aEdge"
+    elif int(an) ==5:
+        var= raw_input("Change from "+ str(diffperdt) +" to:")
+        diffperdt= float(var)
+        savedFN = "diff"
+    else :
+        print "Nothing was changed! Label saved file 'erase'"
+        savedFN = "erase"
+        var=''
+else:
     print "Nothing was changed! Label saved file 'erase'"
+    savedFN = "erase"
+    var= ''
 
 
 supersatp = supersat * supersatpfactor
@@ -142,8 +157,11 @@ rainperdt_edge = rainperdt * alpha_edge
 [Fliq, Nice] = simple1d3.simple1d3(x, Fliq0, Nice0, Ntimes, diffperdt, rainperdt_terr, rainperdt_edge, Fliqmax)
 
 # Save it
-savedFN = raw_input("\n\n\nWhat was changed? \n (example: ssp or diff)\n")
-savedFileName ='d31000_' + savedFN + '.dat'
+# This asks user what he/she would like to save the file as 
+       #>> savedFN = raw_input("\n\n\nWhat was changed? \n (example: ssp or diff)\n")
+
+savedFileName ='d3' + str(Ntimes) + '_' + str(savedFN) + str(var) + '.dat'
+print savedFileName
 f = open(savedFileName, 'w')
 pickle.dump(Fliq, f)
 pickle.dump(Nice, f)
