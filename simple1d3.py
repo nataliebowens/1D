@@ -23,7 +23,7 @@ def simple1d3(x=None, Fliq=None, Nice=None, Ntimes=None, diffperdt=None, rainper
 
         #This will ask the user if you want to have the program
         #plot the variables as it is calculating and how often....
-    ans = raw_input("Real-time plotting? \n (y or n) :")
+    ans = raw_input("Real-time plotting? \n (y?) :")
 
     if ans == 'y':
         timesteps= raw_input("How many time steps? \n (integer) :") 
