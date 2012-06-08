@@ -13,7 +13,7 @@ reload(simple1d3)
 ans = raw_input("Reloading input data? \n (y or n) :")
 
 if ans == 'y':
-    f = open('simple1d3.dat', 'r')
+    f = open('pre_simple1d3.dat', 'r')
     Fliq0 = pickle.load(f)
     Nice0 = pickle.load(f)
     x = pickle.load(f)
@@ -106,7 +106,9 @@ else:
 [Fliq, Nice] = simple1d3.simple1d3(x, Fliq0, Nice0, Ntimes, diffperdt, rainperdt_terr, rainperdt_edge, Fliqmax)
 
 # Save it
-f = open('pre_simple1d3.dat', 'w')
+savedFN = raw_input("What was changed? /n (example: ssp or diff) /n No spaces. ")
+savedFileName ='d31000_' + savedFN + '.dat'
+f = open(savedFileName, 'w')
 pickle.dump(Fliq, f)
 pickle.dump(Nice, f)
 pickle.dump(x, f)

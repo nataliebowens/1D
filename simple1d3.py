@@ -94,7 +94,7 @@ def simple1d3(x=None, Fliq=None, Nice=None, Ntimes=None, diffperdt=None, rainper
     end
     
     # This prints out the time that it takes each step to complete in the loop. 
-    print "time for... \n\btDiff=", round(tDiff, 3), "\btLookE=", round(tLookE, 3), "\btLookN=", round(tLookN, 3), "\btFind=", round(tFind,3), "\btVap=", round(tVap,3), "\bUpdate=", round(tUpdate,3)
+   # print "time for... \n\btDiff=", round(tDiff, 3), "\btLookE=", round(tLookE, 3), "\btLookN=", round(tLookN, 3), "\btFind=", round(tFind,3), "\btVap=", round(tVap,3), "\bUpdate=", round(tUpdate,3)
     
     
     # Record stuff and get out
