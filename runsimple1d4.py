@@ -14,7 +14,7 @@ import simple1d3
 reload(simple1d3)
 
 print "Reloading input data"
-
+xmax=501
 f = open('pre_simple1d3.dat', 'r')
 Fliq0 = pickle.load(f)
 Nice0 = pickle.load(f)
