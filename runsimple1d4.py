@@ -38,7 +38,7 @@ supersatpfactor = 0.9
 alpha_terr = 0.2
 alpha_edge = 1.0
 diffperdt=0.05
-an= raw_input("\n1.supersat \n2.supersatpfactor \n3.alpha_terr \n4.alpha_edge \n5.diffperdt \n# of variable you would like to change:")
+an= raw_input("\n0.normal \n1.supersat \n2.supersatpfactor \n3.alpha_terr \n4.alpha_edge \n5.diffperdt \n# of variable you would like to change:")
 if an.isdigit():
     if int(an)== 1:
         var= raw_input("Change from "+ str(supersat) +" to:")
@@ -60,6 +60,10 @@ if an.isdigit():
         var= raw_input("Change from "+ str(diffperdt) +" to:")
         diffperdt= float(var)
         savedFN = "diff"
+    elif int(an) ==0:
+        print "Normal"
+        savedFN = "normal"
+        var=''
     else :
         print "Nothing was changed! Label saved file 'erase'\n"
         savedFN = "erase"

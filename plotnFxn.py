@@ -4,19 +4,23 @@ from pylab import *
 import pdb
 import time
 import pickle
+import matplotlib.mlab
+import matplotlib.pyplot
+import numpy
+
+
 
 
 print "Printing your graph"
 # f is a file
-f = open('d60000_erase.dat', 'r')
+f = open('d31000_normal.dat', 'r')
 Fliq0 = pickle.load(f)
 Nice0 = pickle.load(f)
 x = pickle.load(f)
-rainperdt
 f.close()
 print "The normal case is loaded"
 
-gData= "d60000_diff0.01.dat"
+gData= "d31000_ssp0.98.dat"
 gIndex= gData.find("_")
 pert= gData[1+gIndex:]
 pert= pert.replace('.dat', '')
@@ -42,7 +46,7 @@ f.close()
 
 # Plot it
 figurenumber = 1
-figure(figurenumber)
+fig= figure(figurenumber)
 clf()
 #subplot(2,1,1)
 plot(x, Nice0, x, Fliq0 + Nice0, x, Nice,x, Fliq+Nice)
@@ -67,6 +71,12 @@ else :
     print "Not working!"
 stitle = 'Ntimes =' + str(Ntimes)+ ', '+ yo + ' changed from '+ str(last) +' to ' + str(pert2)
 title(stitle)
+#saveas(h, pert, 'png' )
+#imsave(figure(1),'png')
+fig.savefig(pert + '.png')
+
+
+
 #subplot(2,1,2)
 #plot(x, Nice, x, Fliq + Nice)
 #xlabel('x')
