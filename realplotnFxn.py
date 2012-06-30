@@ -11,16 +11,31 @@ import numpy
 
 
 
-print "Printing your graph"
+print "Printing & Saving your graph"
+
+#Don't Change!
+Nx = 500
+xmax = 501
+Fliqstart = 0.1
+alpha_terr = 0.1
+layer = 0.30 #size of layer in nanometers
+Tau = 1.20E-6 # in seconds
+tNot= -Tau*(log(alpha_terr))
+
 # f is a file
-f = open('d40000_normal.dat', 'r')
+f = open('d32000_normal.dat', 'r')
 Fliq0 = pickle.load(f)
 Nice0 = pickle.load(f)
 x = pickle.load(f)
+diffperdt0= pickle.load(f)
+diffCofact0=pickle.load(f)                
+rainperdt_terr0 = pickle.load(f)
+rainperdt_edge0 = pickle.load(f)
+Fliqmax0 = pickle.load (f)
+growthRate0= pickle.load(f)
 f.close()
-print "The normal case is loaded"
 
-gData= "d40000_diff0.1.dat"
+gData= "d32000_ssp0.2.dat"
 gIndex= gData.find("_")
 pert= gData[1+gIndex:]
 pert= pert.replace('.dat', '')
@@ -36,10 +51,18 @@ Ntimes= gData[:gI]
 Ntimes= Ntimes.replace('d','')
 Ntimes= int(Ntimes)
 print "Ntimes equals ", Ntimes 
+
+#Loading in the pertibation
 g= open(gData, 'r')
 Fliq = pickle.load(g)
 Nice = pickle.load(g)
 x = pickle.load(g)
+diffperdt= pickle.load(g)
+diffCofact=pickle.load(g)                
+rainperdt_terr = pickle.load(g)
+rainperdt_edge = pickle.load(g)
+Fliqmax = pickle.load (g)
+growthRate= pickle.load(g)
 f.close()
 
 
@@ -50,20 +73,24 @@ fig= figure(figurenumber)
 clf()
 #subplot(2,1,1)
 plot(x, Nice0, x, Fliq0 + Nice0, x, Nice,x, Fliq+Nice)
+xlim([0,500])
 xlabel('x')
-ylabel('Layer thickness')
+grid()
+ylab= "Layer thickness (1= " + str(layer) + "nm)"
+ylabel(ylab)
+difference= growthRate-growthRate0
+lab1= "oGR: "+ str(round(growthRate0,4)) +" \nnGR: "+ str(round(growthRate,4)) +"\ndiff: "+ str(round(difference,4)) 
+text(400, Nice0[150], lab1)
 if pert1 == "diff":
     yo = 'Diffusivity'
-    last= 0.05
+    last= 0.1
+    pert2=pert2+ " (E-5 cm^2/s)"
 elif pert1 == "ss":
     yo = 'Supersaturation'
     last= 0.04
-elif pert1 == "aTerr":
-    yo = 'Alpha Terrace '
-    last= 0.1
 elif pert1 == "aEdge":
     yo = 'Alpha Edge'
-    last=1.0
+    last= 1.0
 elif pert1 == "ssp":
     yo = 'SupersaturationP factor'
     last= 0.9

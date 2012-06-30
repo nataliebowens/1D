@@ -34,7 +34,7 @@ else:
     diffperdt = 0.05
     supersat = 0.04
     supersatpfactor = 0.9
-    alpha_terr = 0.2
+    alpha_terr = 0.1
     alpha_edge = 1.0
     Fliqmax = 1.5
     x = linspace(0, xmax, Nx)
