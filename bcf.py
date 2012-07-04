@@ -67,6 +67,8 @@ velLef=lSizeNice/Ntimes
 velLef=vellef/tNot
 growthMid=velMid/ (1E3 *(1/layer)) #microM per second
 growthLef=velLef/ (1E3 *(1/layer)) #microM per second
+print "left growth:", round(growthLef,4), "mid growth:", round(growthMid,4), "r growth:", round(growthRate,4)
+
 
  
 

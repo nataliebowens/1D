@@ -25,15 +25,19 @@ p0=polyfit(x, Nice0, 2)
 Nice0fit= p0[2] + x* p0[1] + x**2 *p0[0]
 p=polyfit(x, Nice, 2)
 Nicefit= p[2] + x* p[1] + x**2 *p[0]
-figure(1)
-clf()
-plot(x,Nice0fit, x, Nice0, x,Nicefit, x, Nice)
+#figure(1)
+#clf()
+#title("polyfit graph")
+#plot(x,Nice0fit, x, Nice0, x,Nicefit, x, Nice)
 
 Nice0p= p0[1] + 2*x* p0[0]
 Nicep= p[1] + 2*x* p[0]
 figure(2)
 clf()
-plot(x, Nice0p, x, Nicep)
+title('Deriv of both')
+xlabel('x')
+ylabel('Nice(0)p ')
+plot(x, Nice0p, x, Nicep)  
 quad0=polyfit(Nice0p, 1/rainperdt0,2)
 
 quad=polyfit(Nicep, 1/rainperdt,2)
@@ -51,11 +55,17 @@ Q=rainperdt*(quad[2]+quad[1]*Nicep)
 
 figure(4)
 clf()
+title('x vs. Q')
+xlabel('x')
+ylabel('Q(0)')
 plot(x, Q0, x, Q)
 
 
 figure(3)
 clf()
+title('Diff(Nice) vs. 1/Rain')
+xlabel('Nice(0)p')
+ylabel('1/rain')
 plot(Nice0p, 1/rainperdt0, Nicep, 1/rainperdt)
 
 print isinteractive()
