@@ -23,7 +23,7 @@ Tau = 1.20E-6 # in seconds
 tNot= -Tau*(log(alpha_terr))
 
 # f is a file
-f = open('d32000_normal.dat', 'r')
+f = open('d130000_normal.dat', 'r')
 Fliq0 = pickle.load(f)
 Nice0 = pickle.load(f)
 x = pickle.load(f)
@@ -35,7 +35,7 @@ Fliqmax0 = pickle.load (f)
 growthRate0= pickle.load(f)
 f.close()
 
-gData= "d32000_ssp0.2.dat"
+gData= "d130000_diff01.dat"
 gIndex= gData.find("_")
 pert= gData[1+gIndex:]
 pert= pert.replace('.dat', '')

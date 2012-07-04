@@ -1,4 +1,4 @@
-def simple1d3(x=None, Fliq=None, Nice=None, Ntimes=None, diffperdt=None, rainperdt_terr=None, rainperdt_edge=None, Fliqmax=None):
+def simple1d4(x=None, Fliq=None, Nice=None, Ntimes=None, diffperdt=None, Tau=None, rainperdt=None, Fliqmax=None):
     "This is a 1-d model"
     
     print "This is a 1-d model"
@@ -36,15 +36,12 @@ def simple1d3(x=None, Fliq=None, Nice=None, Ntimes=None, diffperdt=None, rainper
     for itime in range(1,Ntimes):
         
         # Diffusion of liquid to adjacent cells
-        tDiff= tDiff - time.time()  
         end = Fliqnext.size-1
         Fliqnext[1:end] = Fliq[1:end] * (1 - diffperdt) + (Fliq[0:end-1] + Fliq[2:end+1]) * diffperdt / 2
         Fliqnext[0] = Fliq[0] * (1 - diffperdt / 2) + Fliq[1] * diffperdt / 2
         Fliqnext[end] = Fliq[end] * (1 - diffperdt / 2) + Fliq[end-1] * diffperdt / 2
-        tDiff= tDiff + time.time()
         
         # Look for edges
-        tLookE= tLookE - time.time()
         Eice = numpy.zeros(numpy.size(Nice))
         dNice = numpy.diff(Nice)
         Iedge_up = matplotlib.mlab.find(dNice > 0)
@@ -52,20 +49,15 @@ def simple1d3(x=None, Fliq=None, Nice=None, Ntimes=None, diffperdt=None, rainper
         
         Iedge_dn = matplotlib.mlab.find(dNice < 0) + 1
         Eice[Iedge_dn] = -1; #print Eice
-        tLookE= tLookE + time.time()
         
         
         # Find locations of edges and terraces
-        tFind= tFind - time.time()
         Iterr = matplotlib.mlab.find(Eice == 0)
         Iedge = matplotlib.mlab.find(Eice != 0)
-        tFind= tFind + time.time()
         
         # Net deposition from vapor
-        tVap= tVap - time.time()
-        Fliqnext[Iterr] = Fliqnext[Iterr] + rainperdt_terr[Iterr]
-        Fliqnext[Iedge] = Fliqnext[Iedge] + rainperdt_edge[Iedge]
-        tVap= tVap + time.time()
+        Fliqnext[Iterr] = Fliqnext[Iterr]*(1-1/Tau) + rainperdt[Iterr]
+        Fliqnext[Iedge] = Fliqnext[Iedge] + rainperdt[Iedge] 
         
         # Look for layer nucleation sites
         tLookN= tLookN - time.time() 

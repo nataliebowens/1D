@@ -6,8 +6,8 @@ from pylab import *
 import pdb
 import time
 import pickle
-import simple1d3
-reload(simple1d3)
+import simple1d4
+reload(simple1d4)
 
 
 #  Don't Change!!
@@ -16,14 +16,15 @@ xmax = 501
 Fliqstart = 0.1
 alpha_terr = 0.1
 layer = 0.30 #size of layer in nanometers
-Tau = 1.20E-6 # in seconds
-tNot= -Tau*(log(alpha_terr))
+Tau_ms = 1.2# in microseconds
+tNot= 0.1 #in microseconds
+Tau= Tau_ms/tNot
 
 
 
 #Choose these!
 Ntimes = 30000
-diffCofact= 0.1 #in E-5 cm^2/s
+diffCofact= 0.1 #in cm^2/s
 supersat = 0.04
 supersatpfactor = 0.9
 alpha_edge = 1.0
@@ -31,8 +32,8 @@ Fliqmax = 1.5
 #1000* x_0=100(microm)
 x_0= 0.1 #in micrometer
 
-diffCo= diffCofact*1E-5   #now in cm^2/sec
-diffperdt=diffCo*((1E4)**2)*((1/x_0)**2)*tNot #in units x0^2/t0
+diffCo= diffCofact*1E-5
+diffperdt=diffCo*((1E4)**2)*((1/x_0)**2)*tNot*(1E6)
 print "diffperdt = ",diffperdt 
 
 x = linspace(0, xmax, Nx)
@@ -45,8 +46,8 @@ rainperdt_terr = rainperdt * alpha_terr
 rainperdt_edge = rainperdt * alpha_edge
             
 
-# Call to simple1d3
-[Fliq, Nice] = simple1d3.simple1d3(x, Fliq0, Nice0, Ntimes, diffperdt, rainperdt_terr, rainperdt_edge, Fliqmax)
+# Call to simple1d4
+[Fliq, Nice] = simple1d4.simple1d4(x, Fliq0, Nice0, Ntimes,diffperdt, Tau, rainperdt, Fliqmax)
 
 
 #new paraa meters
@@ -63,7 +64,7 @@ print "Velocity of model(r) is ", velExp
 velMid=mSizeNice/Ntimes
 velMid=velMid/tNot
 velLef=lSizeNice/Ntimes
-velLef=velLef/tNot
+velLef=vellef/tNot
 growthMid=velMid/ (1E3 *(1/layer)) #microM per second
 growthLef=velLef/ (1E3 *(1/layer)) #microM per second
 
