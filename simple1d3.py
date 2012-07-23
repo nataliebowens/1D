@@ -70,8 +70,8 @@ def simple1d3(x=None, Fliq=None, Nice=None, Ntimes=None, diffperdt=None, rainper
         # Look for layer nucleation sites
         tLookN= tLookN - time.time() 
         Ilrnc = Fliqnext > Fliqmax
-        Fliqnext[Ilrnc] = Fliqnext[Ilrnc] - Fliqmax
-        Nice[Ilrnc] = Nice[Ilrnc] + Fliqmax
+        Fliqnext[Ilrnc] = Fliqnext[Ilrnc] - 1
+        Nice[Ilrnc] = Nice[Ilrnc] + 1
         tLookN= tLookN + time.time() 
         
         # Update Fliq
