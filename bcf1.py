@@ -1,12 +1,14 @@
+import numpy
+import matplotlib.mlab
+import matplotlib.pyplot
+    
 def bcf1(x=None, Fliq0=None, Nice0=None, Ntimes=None, rainperdt=None, diffperdt=None, tau_terr=None, tau_edge=None, Fliqmax=None, showflag=None):
     "This is a 1-d model"
     
     print "This is a 1-d model"
     # step dynamics, 1-dimensional, fixed boundary conditions corresponding to
     # prismatic-prismatic edges
-    import numpy
-    import matplotlib.mlab
-    import matplotlib.pyplot
+
     
     # Other initializing
     #pdb.set_trace()http://piercetransit.org/http://piercetransit.org/

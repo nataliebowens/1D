@@ -46,8 +46,10 @@ supersatp = supersat * supersatpfactor
 c = (supersat - supersatp) / xmax ** 2
 rainperdt = x ** 2 * c + supersatp
       
+      
 # Call to bcf code
 [Fliq, Nice] = bcf1.bcf1(x, Fliq0, Nice0, Ntimes, rainperdt, diffperdt, tau_terr, tau_edge, Fliqmax, showcode)
+
 
 # Calculate a growth rate
 Vgrowth_layerspersec = (Nice[Nx-1]-Nice0[Nx-1])/Ntimes/t0
@@ -67,6 +69,7 @@ pickle.dump(Fliqmax, f)
 pickle.dump(oldtime,f)
 pickle.dump(Vgrowth_micrometerspersec ,f)
 f.close()
+
 
 # Plot it
 figurenumber = 1
