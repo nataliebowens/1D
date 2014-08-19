@@ -13,7 +13,11 @@ reload(simple1d3)
 ans = raw_input("Reloading input data? \n (y or n) :")
 
 if ans == 'y':
+<<<<<<< HEAD
     f = open('simple1d4.dat', 'r')
+=======
+    f = open('pre_simple1d3.dat', 'r')
+>>>>>>> FETCH_HEAD
     Fliq0 = pickle.load(f)
     Nice0 = pickle.load(f)
     x = pickle.load(f)
@@ -29,12 +33,17 @@ else:
 
     Nx = 500 #Changed this to half
     xmax = 501
+<<<<<<< HEAD
     Fliqstart = .1
     Ntimes = 1000
+=======
+    Fliqstart = 0.1
+    Ntimes = 30000
+>>>>>>> FETCH_HEAD
     diffperdt = 0.05
     supersat = 0.04
-    supersatpfactor = .8
-    alpha_terr = .2
+    supersatpfactor = 0.9
+    alpha_terr = 0.1
     alpha_edge = 1.0
     Fliqmax = 1.5
     x = linspace(0, xmax, Nx)
@@ -52,12 +61,12 @@ else:
     
     ##Input the parameters. If press enter, then they will be defaulted.
     if inParm== 'i':
-        nx= raw_input("Nx(int):")
-        if nx== '':
-            pass
-        else:
-            Nx= int(nx)
-        print Nx
+#        nx= raw_input("Nx(int):")
+#        if nx== '':
+#            pass
+#        else:
+#            Nx= int(nx)
+#        print Nx
         
         
         ntimes= raw_input("Ntimes(int):")
@@ -104,7 +113,9 @@ else:
 [Fliq, Nice] = simple1d3.simple1d3(x, Fliq0, Nice0, Ntimes, diffperdt, rainperdt_terr, rainperdt_edge, Fliqmax)
 
 # Save it
-f = open('simple1d3_normal.dat', 'w')
+savedFN = raw_input("What was changed? /n (example: ssp or diff) /n No spaces. ")
+savedFileName ='d31000_' + savedFN + '.dat'
+f = open(savedFileName, 'w')
 pickle.dump(Fliq, f)
 pickle.dump(Nice, f)
 pickle.dump(x, f)

@@ -13,18 +13,20 @@ import pickle
 import simple1d3
 reload(simple1d3)
 
+# reloads the data from the pre-run (Fliq0, Nice0, x, diffperdt, diffCofact, rainperdt_(terr and edge), Fliqmax, oldgrowthRate)
 print "Reloading input data"
-xmax=501
-f = open('pre_simple1d3.dat', 'r')
+f = open('d30000predata.dat', 'r')
 Fliq0 = pickle.load(f)
 Nice0 = pickle.load(f)
 x = pickle.load(f)
-diffperdt= pickle.load(f)                
+diffperdt= pickle.load(f)
+diffCofact=pickle.load(f)                
 rainperdt_terr = pickle.load(f)
 rainperdt_edge = pickle.load(f)
 Fliqmax = pickle.load (f)
+oldgrowthRate= pickle.load(f)
 f.close()
-Ntimes = 1000
+Ntimes = 2000
 ntimes= raw_input("How many extra steps:")
 if ntimes=='':
     print Ntimes
@@ -33,13 +35,24 @@ else:
     print Ntimes
 #Fliq0 = Fliq0 + 3*exp(-(x-250)**2/(2*100^2))
 
+
+#Don't Change!!
+alpha_terr = 0.1
+Nx = 500
+xmax = 501
+Fliqstart = 0.1
+layer = 0.30 #size of layer in nanometers
+Tau = 1.20E-6 # in seconds
+tNot= -Tau*(log(alpha_terr))
+
+#Changables
 supersat = 0.04                
 supersatpfactor = 0.9
-alpha_terr = 0.1
 alpha_edge = 1.0
-diffperdt=0.05
+diffCofact= 0.1 #in 10^-5 cm^2/s
 Fliqmax = 1.5
-an= raw_input("\n0.normal \n1.supersat \n2.supersatpfactor \n3.alpha_terr \n4.alpha_edge \n5.diffperdt \n6.FliqMax\n# of variable you would like to change:")
+
+an= raw_input("\n0.normal \n1.supersat \n2.supersatpfactor \n3.alpha_edge \n4.diffCofact \n5.FliqMax\n# of variable you would like to change:")
 if an.isdigit():
     if int(an)== 1:
         var= raw_input("Change from "+ str(supersat) +" to:")
@@ -50,18 +63,15 @@ if an.isdigit():
         supersatpfactor= float(var)
         savedFN = "ssp"
     elif int(an) ==3:
-        var= raw_input("Change from "+ str(alpha_terr) +" to:")
-        alpha_terr= float(var)
-        savedFN = "aTerr"
-    elif int(an) ==4:
         var= raw_input("Change from "+ str(alpha_edge) +" to:")
         alpha_edge= float(var)
         savedFN = "aEdge"
-    elif int(an) ==5:
-        var= raw_input("Change from "+ str(diffperdt) +" to:")
-        diffperdt= float(var)
+    elif int(an) ==4:
+        print "Experimentally Realistic range: 0.02 to 1 (E-5 cm^2/s)"
+        var= raw_input("Change from "+ str(diffCofact) +" to:")
+        diffCofact= float(var)
         savedFN = "diff"
-    elif int(an) ==6:
+    elif int(an) ==5:
         var= raw_input("Change from "+ str(Fliqmax) +" to:")
         Fliqmax= float(var)
         savedFN = "FliqM"
@@ -78,92 +88,32 @@ else:
     savedFN = "erase"
     var= ''
 
-
+#Creating rainperdt
 supersatp = supersat * supersatpfactor
 c = (supersat - supersatp) / xmax ** 2
 rainperdt = x ** 2 * c + supersatp
 rainperdt_terr = rainperdt * alpha_terr
 rainperdt_edge = rainperdt * alpha_edge
-    
-#else:
-#
-#    Nx = 500 #Changed this to half
-#    xmax = 501
-#    Fliqstart = 0.1
-#    Ntimes = 30000
-#    diffperdt = 0.05
-#    supersat = 0.04
-#    supersatpfactor = 0.9
-#    alpha_terr = 0.2
-#    alpha_edge = 1.0
-#    Fliqmax = 1.5
-#    x = linspace(0, xmax, Nx)
-#    Fliq0 = ones(size(x)) * Fliqstart
-#    Nice0 = zeros(size(x))
-#    supersatp = supersat * supersatpfactor
-#    c = (supersat - supersatp) / xmax ** 2
-#    rainperdt = x ** 2 * c + supersatp
-#    rainperdt_terr = rainperdt * alpha_terr
-#    rainperdt_edge = rainperdt * alpha_edge
 
-
-    ##Ask: "Default OR input parameters?"
-#    inParm= raw_input("Default or input parameters? \n(d or i)")
-    
-    ##Input the parameters. If press enter, then they will be defaulted.
-#   if inParm== 'i':
-#        nx= raw_input("Nx(int):")
-#        if nx== '':
-#            pass
-#        else:
-#            Nx= int(nx)
-#        print Nx
-#        
-#        
-#        ntimes= raw_input("Ntimes(int):")
-#        if ntimes== '':
-#            pass
-#        else:
-#            Ntimes= int(ntimes)
-#        print Ntimes
-#        
-#        
-#        raindt= raw_input("Diffusitivity(float):")
-#        if raindt== '':
-#            pass
-#        else:
-#            diffperdt = float(raindt)
-#        print diffperdt
-#        
-#        
-#        supasat= raw_input("Supersat(float):")
-#        if raindt== '':
-#            pass
-#        else:
-#            diffperdt = float(raindt)
-#        print diffperdt
-#        
-#        
-#        deltasupsat= raw_input("Difference in supersat btw middle & edge(between 0-1):")
-#        if deltasupsat== '':
-#            pass
-#        else:
-#            deltasupsat = float(supersatpfactor)
-#        print supersatpfactor
-#        
-#        
-#        alpha_terr0= raw_input("Alpha terrace(btw 0-1): ")
-#        if alpha_terr0== '':
-#            pass
-#        else:
-#            alpha_terr= float(alpha_terr0)
-#        print alpha_terr
-#        
-#            
+#Making diffperdt
+diffCo= diffCofact*1E-5
+diffperdt=diffCo*((1E4)**2)*((1/0.1)**2)*tNot
 
 
 # Call to simple1d3
 [Fliq, Nice] = simple1d3.simple1d3(x, Fliq0, Nice0, Ntimes, diffperdt, rainperdt_terr, rainperdt_edge, Fliqmax)
+
+#new paraa meters
+rSizeNice=Nice[499]
+mSizeNice=Nice[249]
+lSizeNice=Nice[0]
+velMod = rSizeNice/(Ntimes+30000) #velocity of simulation in layers per t(0) (at the larger side)
+velMod =velMod/tNot #velocity of sim in layers per second
+growthRate= velMod/ (1E3 *(1/layer))
+velExp= growthRate*1E3*(1/layer)
+print "\n(  OLD  ,  NEW  ) in microm/sec. (calc)"
+print "(" + str(round(oldgrowthRate, 5)) + "," + str(round(growthRate,5)) + ")"
+
 
 # Save it
 # This asks user what he/she would like to save the file as 
@@ -176,9 +126,11 @@ pickle.dump(Fliq, f)
 pickle.dump(Nice, f)
 pickle.dump(x, f)
 pickle.dump(diffperdt, f)
+pickle.dump(diffCofact, f)
 pickle.dump(rainperdt_terr, f)
 pickle.dump(rainperdt_edge, f)
 pickle.dump(Fliqmax, f)
+pickle.dump(growthRate,f)
 f.close()
 
 # Plot it
@@ -187,9 +139,9 @@ figure(figurenumber)
 clf()
 plot(x, Nice, x, Fliq + Nice)
 xlabel('x')
-ylabel('Layer thickness')
+ylab= "Layer thickness (1= " + str(layer) + "nm)"
+ylabel(ylab)
 stitle = 'Ntimes = '
 stitle += str(Ntimes)
 stitle += ' 1d model'
 title(stitle)
-

@@ -11,7 +11,6 @@ def simple1d3(x=None, Fliq0=None, Nice0=None, Ntimes=None, diffperdt=None, rainp
     import pdb
     
     # Other initializing
-    #pdb.set_trace()http://piercetransit.org/http://piercetransit.org/
     
     Fliq = Fliq0
     Nice = Nice0
@@ -26,7 +25,7 @@ def simple1d3(x=None, Fliq0=None, Nice0=None, Ntimes=None, diffperdt=None, rainp
 
         #This will ask the user if you want to have the program
         #plot the variables as it is calculating and how often....
-    ans = raw_input("Real-time plotting? \n (y or n) :")
+    ans = raw_input("Real-time plotting? \n (y?) :")
 
     if ans == 'y':
         timesteps= raw_input("How many time steps? \n (integer) :") 
@@ -73,7 +72,7 @@ def simple1d3(x=None, Fliq0=None, Nice0=None, Ntimes=None, diffperdt=None, rainp
         # Look for layer nucleation sites
         tLookN= tLookN - time.time() 
         Ilrnc = Fliqnext > Fliqmax
-        Fliqnext[Ilrnc] = Fliqnext[Ilrnc] - 1.0
+        Fliqnext[Ilrnc] = Fliqnext[Ilrnc] - 1
         Nice[Ilrnc] = Nice[Ilrnc] + 1
         tLookN= tLookN + time.time() 
         
@@ -89,9 +88,13 @@ def simple1d3(x=None, Fliq0=None, Nice0=None, Ntimes=None, diffperdt=None, rainp
                 matplotlib.pyplot.clf() 
                 matplotlib.pyplot.plot(x, Nice, x, Fliq + Nice)                  
                 print itime 
+<<<<<<< HEAD
                 matplotlib.pyplot.grid()
                 matplotlib.pyplot.xlim([0,100])
                 matplotlib.pyplot.pause(0.001)##>> 100 below equals answer
+=======
+                matplotlib.pyplot.pause(0.001) #What is this for?
+>>>>>>> FETCH_HEAD
             
         else:
             pass #Should just pass to the next code
@@ -99,7 +102,7 @@ def simple1d3(x=None, Fliq0=None, Nice0=None, Ntimes=None, diffperdt=None, rainp
     end
     
     # This prints out the time that it takes each step to complete in the loop. 
-    print "time for... \n\btDiff=", round(tDiff, 3), "\btLookE=", round(tLookE, 3), "\btLookN=", round(tLookN, 3), "\btFind=", round(tFind,3), "\btVap=", round(tVap,3), "\bUpdate=", round(tUpdate,3)
+   # print "time for... \n\btDiff=", round(tDiff, 3), "\btLookE=", round(tLookE, 3), "\btLookN=", round(tLookN, 3), "\btFind=", round(tFind,3), "\btVap=", round(tVap,3), "\bUpdate=", round(tUpdate,3)
     
     
     # Record stuff and get out
