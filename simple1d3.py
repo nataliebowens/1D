@@ -1,4 +1,4 @@
-def simple1d3(x=None, Fliq=None, Nice=None, Ntimes=None, diffperdt=None, rainperdt_terr=None, rainperdt_edge=None, Fliqmax=None):
+def simple1d3(x=None, Fliq0=None, Nice0=None, Ntimes=None, diffperdt=None, rainperdt_terr=None, rainperdt_edge=None, Fliqmax=None):
     "This is a 1-d model"
     
     print "This is a 1-d model"
@@ -13,6 +13,8 @@ def simple1d3(x=None, Fliq=None, Nice=None, Ntimes=None, diffperdt=None, rainper
     # Other initializing
     #pdb.set_trace()http://piercetransit.org/http://piercetransit.org/
     
+    Fliq = Fliq0
+    Nice = Nice0
     Fliqnext = numpy.zeros(numpy.size(x))
     tDiff=0.0
     tLookE=0.0
@@ -87,6 +89,8 @@ def simple1d3(x=None, Fliq=None, Nice=None, Ntimes=None, diffperdt=None, rainper
                 matplotlib.pyplot.clf() 
                 matplotlib.pyplot.plot(x, Nice, x, Fliq + Nice)                  
                 print itime 
+                matplotlib.pyplot.grid()
+                matplotlib.pyplot.xlim([0,100])
                 matplotlib.pyplot.pause(0.001)##>> 100 below equals answer
             
         else:
